@@ -1,3 +1,3 @@
 <template>
-    <footer>Copyright &copy; 2022 Nauval @Laravel Vuejs</footer>
+    <div class="container">Copyright &copy; 2022 Nauval @Laravel Vuejs</div>
 </template>

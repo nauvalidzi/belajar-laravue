@@ -1,18 +1,22 @@
 <template>
-    <div v-if="username">
-        <h1>Hello {{ username }}.</h1>
-        <p>Back to <router-link :to="{ name: 'User' }">Users</router-link></p>
-    </div>
-    <div v-else>
-        <h1>List user</h1>
-        <ul>
-            <li v-for="user in users">
-                <!-- <router-link :to="profile(user.name)">{{user.name}}</router-link> -->
-                <a href="" @click.prevent="showuser(user.name)">{{
-                    user.name
-                }}</a>
-            </li>
-        </ul>
+    <div class="container">
+        <div v-if="username">
+            <h1>Hello {{ username }}.</h1>
+            <p>
+                Back to <router-link :to="{ name: 'User' }">Users</router-link>
+            </p>
+        </div>
+        <div v-else>
+            <h1>List user</h1>
+            <ul>
+                <li v-for="user in users" :key="user.id">
+                    <!-- <router-link :to="profile(user.name)">{{user.name}}</router-link> -->
+                    <a href="" @click.prevent="showuser(user.name)">{{
+                        user.name
+                    }}</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 

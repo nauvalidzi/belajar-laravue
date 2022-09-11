@@ -10206,8 +10206,3 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-.active {
-  background: darkgreen;
-  color: lightgoldenrodyellow;
-  padding: 1px;
-}
