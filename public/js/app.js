@@ -2185,7 +2185,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      form: {
+        name: '',
+        email: '',
+        phone: '',
+        password: ''
+      }
+    };
+  },
+  methods: {
+    handleSubmit: function handleSubmit() {
+      var _this = this;
+
+      axios.post('/api/users', this.form).then(function (response) {
+        var id = response.data.user.id;
+
+        _this.$router.push({
+          name: "Profile",
+          params: {
+            id: id
+          }
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -21302,21 +21331,24 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h1", [_vm._v("Register")]),
+  return _c("div", { staticClass: "container" }, [
+    _c("h1", [_vm._v("Register")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card" }, [
+      _c("h5", { staticClass: "card-header" }, [_vm._v("Form Register")]),
       _vm._v(" "),
-      _c("div", { staticClass: "card" }, [
-        _c("h5", { staticClass: "card-header" }, [_vm._v("Form Register")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("form", { attrs: { action: "" } }, [
+      _c("div", { staticClass: "card-body" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function ($event) {
+                $event.preventDefault()
+                return _vm.handleSubmit.apply(null, arguments)
+              },
+            },
+          },
+          [
             _c("div", { staticClass: "mb-3 row" }, [
               _c(
                 "label",
@@ -21329,8 +21361,25 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "col-sm-6" }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.name,
+                      expression: "form.name",
+                    },
+                  ],
                   staticClass: "form-control",
                   attrs: { type: "text", id: "name", placeholder: "Your name" },
+                  domProps: { value: _vm.form.name },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "name", $event.target.value)
+                    },
+                  },
                 }),
               ]),
             ]),
@@ -21347,11 +21396,28 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "col-sm-6" }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.email,
+                      expression: "form.email",
+                    },
+                  ],
                   staticClass: "form-control",
                   attrs: {
                     type: "email",
                     id: "email",
                     placeholder: "name@example.com",
+                  },
+                  domProps: { value: _vm.form.email },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "email", $event.target.value)
+                    },
                   },
                 }),
               ]),
@@ -21369,11 +21435,28 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "col-sm-6" }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.phone,
+                      expression: "form.phone",
+                    },
+                  ],
                   staticClass: "form-control",
                   attrs: {
                     type: "phone",
                     id: "phone",
                     placeholder: "Your phone",
+                  },
+                  domProps: { value: _vm.form.phone },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "phone", $event.target.value)
+                    },
                   },
                 }),
               ]),
@@ -21391,25 +21474,48 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "col-sm-6" }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.password,
+                      expression: "form.password",
+                    },
+                  ],
                   staticClass: "form-control",
                   attrs: {
                     type: "password",
                     id: "password",
                     placeholder: "Your password",
                   },
+                  domProps: { value: _vm.form.password },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "password", $event.target.value)
+                    },
+                  },
                 }),
               ]),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "mb-3 row" }, [
-              _c("div", { staticClass: "col-sm-2" }, [
-                _c("button", { staticClass: "btn btn-primary" }, [
-                  _vm._v("Submit"),
-                ]),
-              ]),
-            ]),
-          ]),
-        ]),
+            _vm._m(0),
+          ]
+        ),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mb-3 row" }, [
+      _c("div", { staticClass: "col-sm-2" }, [
+        _c("button", { staticClass: "btn btn-primary" }, [_vm._v("Submit")]),
       ]),
     ])
   },
